@@ -1,0 +1,14 @@
+{
+  "name": "iframe-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "all": "run-p child1 main",
+    "main": "http-server main -p 4000",
+    "child1": "http-server child1 -p 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iframe Example</title>
+  </head>
+  <body>
+    <h1>主页面</h1>
+    <iframe src="./child1.html" width="600" height="400" id="authIframe" style="border: 1px solid black"></iframe>
+  </body>
+  <script>
+    // 测试iframe和外部页面是否同源
+    setTimeout(() => {
+      const iframe = document.getElementById("authIframe");
+      const iframeDoc = iframe.contentDocument;
+      iframeDoc.body.style.backgroundColor = "green";
+      // console.log("如果外部页面和iframe 的内容是同源的", iframe, iframeDoc); // <iframe/> #document
+    }, 2 * 1000);
+
+    // 父应用通知子应用
+    const iframeDom = document.getElementById("authIframe");
+    iframeDom.onload = function () {
+      iframeDom.contentWindow.printChild();
+    };
+
+    function printParent() {
+      console.log("我是父应用");
+    }
+  </script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iframe</title>
+    <style>
+      .child1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>iframe页面</h2>
+    <div class="child1"></div>
+  </body>
+  <script>
+    setTimeout(() => {
+      window.parent.postMessage(
+        {
+          from: "auth",
+          event: "close",
+          code: 1,
+        },
+        "*"
+      );
+    }, 5 * 1000);
+  </script>
+</html>
