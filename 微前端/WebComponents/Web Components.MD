@@ -40,8 +40,5 @@ const shadow = this.attachShadow({ mode: "open" })
 
 <template> 和 <slot> 元素使你可以编写不在呈现页面中显示的标记模板,然后它们可以作为自定义元素结构的基础被多次重用;
 
-template:一种用于保存客户端内容机制,该内容在加载页面时不会呈现,被视为一个可存储在文档中方便后续使用的内容片段;
-slot: Web组件插槽元素,占位符;
-
-
-## window.customElements是什么?
+- template:一种用于保存客户端内容机制,该内容在加载页面时不会呈现,被视为一个可存储在文档中方便后续使用的内容片段;
+- slot: Web组件插槽元素,占位符;
