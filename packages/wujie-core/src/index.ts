@@ -155,7 +155,7 @@ export type cacheOptions = Omit<preOptions & startOptions, optionProperty> &
 
 /**
  * 强制中断主应用运行
- * wujie.__WUJIE 如果为true说明当前运行环境是子应用
+ * window.__WUJIE 如果为true说明当前运行环境是子应用
  * window.__POWERED_BY_WUJIE__ 如果为false说明子应用还没初始化完成
  * 上述条件同时成立说明主应用代码在iframe的loading阶段混入进来了，必须中断执行
  */
