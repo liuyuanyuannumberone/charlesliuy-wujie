@@ -15,6 +15,7 @@ export class EventBus {
 
   constructor(id: string) {
     this.id = id;
+    // 清除这个id对应事件中心的所有事件
     this.$clear();
     if (!appEventObjMap.get(this.id)) {
       appEventObjMap.set(this.id, {});

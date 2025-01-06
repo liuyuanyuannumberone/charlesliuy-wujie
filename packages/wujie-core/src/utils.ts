@@ -24,6 +24,7 @@ export function isHijackingTag(tagName?: string) {
   );
 }
 
+// 判断是否支持无界：主要考虑浏览器是否支持web Components
 export const wujieSupport = window.Proxy && window.CustomElementRegistry;
 
 /**
@@ -147,15 +148,17 @@ export function appRouteParse(url: string): {
   return { urlElement, appHostPath, appRoutePath };
 }
 
+// 生成锚点a元素 https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLAnchorElement
 export function anchorElementGenerator(url: string): HTMLAnchorElement {
   const element = window.document.createElement("a");
   element.href = url;
-  element.href = element.href; // hack ie
+  element.href = element.href; // hack ie 为了兼容某些旧版本的IE浏览器
   return element;
 }
 
+// 将a元素查询参数转化为对象
 export function getAnchorElementQueryMap(anchorElement: HTMLAnchorElement): { [key: string]: string } {
-  const queryString = anchorElement.search || "";
+  const queryString = anchorElement.search || ""; // 类型new URL(newUrl).search
   return [...new URLSearchParams(queryString).entries()].reduce((p, c) => {
     p[c[0]] = c[1];
     return p;
@@ -288,7 +291,7 @@ export function nextTick(cb: () => any): void {
   Promise.resolve().then(cb);
 }
 
-//执行钩子函数
+//执行对应子应用的钩子函数
 export function execHooks(plugins: Array<plugin>, hookName: string, ...args: Array<any>): void {
   try {
     if (plugins && plugins.length > 0) {

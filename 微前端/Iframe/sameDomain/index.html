@@ -14,8 +14,10 @@
     setTimeout(() => {
       const iframe = document.getElementById("authIframe");
       const iframeDoc = iframe.contentDocument;
+      const iframeWindow = iframe.contentWindow;
       iframeDoc.body.style.backgroundColor = "green";
-      // console.log("如果外部页面和iframe 的内容是同源的", iframe, iframeDoc); // <iframe/> #document
+      console.log(iframeWindow.document.body.style.backgroundColor); // green
+      // console.log("如果外部页面和iframe 的内容是同源的", iframe, iframeDoc,contentWindow); // <iframe/> #document
     }, 2 * 1000);
 
     // 父应用通知子应用

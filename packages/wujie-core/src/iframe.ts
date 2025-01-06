@@ -722,7 +722,12 @@ function stopIframeLoading(iframe: HTMLIFrameElement, useObjectURL: { mainHostPa
     loop();
   });
 }
-
+/**
+ * 给iframe添加baseURI属性和ownerDocument属性
+ * @param element
+ * @param iframeWindow
+ * @returns
+ */
 export function patchElementEffect(
   element: (HTMLElement | Node | ShadowRoot) & { _hasPatch?: boolean },
   iframeWindow: Window
@@ -733,11 +738,13 @@ export function patchElementEffect(
     Object.defineProperties(element, {
       baseURI: {
         configurable: true,
+        // 子应用的真实url地址
         get: () => proxyLocation.protocol + "//" + proxyLocation.host + proxyLocation.pathname,
         set: undefined,
       },
       ownerDocument: {
         configurable: true,
+        // 子应用的document
         get: () => iframeWindow.document,
       },
       _hasPatch: { get: () => true },

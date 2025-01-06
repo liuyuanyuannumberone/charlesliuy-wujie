@@ -22,6 +22,7 @@ import { patchRenderEffect } from "./effect";
 import { getCssLoader, getPresetLoaders } from "./plugin";
 import { getAbsolutePath, getContainer, getCurUrl, setAttrsToElement } from "./utils";
 
+// :host: 主要用在Web Components的Shadow DOM上,用于选择组件的宿主元素,即自定义元素的外层元素
 const cssSelectorMap = {
   ":root": ":host",
 };
@@ -40,14 +41,16 @@ export function defineWujieWebComponent() {
   const customElements = window.customElements;
   if (customElements && !customElements?.get("wujie-app")) {
     class WujieApp extends HTMLElement {
+      // 每当自定义元素（wujie组件-子应用）添加到文档中时调用。建议开发人员尽可能在此回调中实现自定义元素的设定,而不是在构造函数中实现
       connectedCallback(): void {
         if (this.shadowRoot) return;
         const shadowRoot = this.attachShadow({ mode: "open" });
+        // 获取wujie-app组件上的属性（唯一标识）补充...
         const sandbox = getWujieById(this.getAttribute(WUJIE_APP_ID));
-        patchElementEffect(shadowRoot, sandbox.iframe.contentWindow);
+        patchElementEffect(shadowRoot, sandbox.iframe.contentWindow); // iframe的window对象
         sandbox.shadowRoot = shadowRoot;
       }
-
+      // 每当元素从文档中移除时调用（子应用被移除后）
       disconnectedCallback(): void {
         const sandbox = getWujieById(this.getAttribute(WUJIE_APP_ID));
         sandbox?.unmount();

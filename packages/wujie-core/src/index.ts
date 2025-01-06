@@ -39,6 +39,8 @@ export interface ScriptObjectLoader {
   /** 子应用加载完毕事件 */
   onload?: Function;
 }
+
+// 无界插件对象钩子的类型
 export interface plugin {
   /** 处理html的loader */
   htmlLoader?: (code: string) => string;
