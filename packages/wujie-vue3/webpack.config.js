@@ -14,8 +14,11 @@ module.exports = {
     umdNamedDefine: true
   },
   mode: "production",
+  // 告诉Webpack不要将某些模块打包进输出文件，而是从外部环境（如全局变量、CDN 或外部库）中加载它们
   externals: {
+    // 为vue提供了四种不同的模块系统支持
     vue: {
+      // 运行在浏览器环境下时,从全局变量名Vue中获取js
       root: "Vue",
       commonjs: "vue",
       commonjs2: "vue",

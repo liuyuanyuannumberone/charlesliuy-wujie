@@ -4,8 +4,8 @@
   "description": "极致的微前端框架",
   "private": true,
   "scripts": {
-    "start": "lerna run start --parallel",
-    "doc": "lerna run docs:dev",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider lerna run start --parallel",
+    "doc": "cross-env NODE_OPTIONS=--openssl-legacy-provider lerna run docs:dev ",
     "clean": "rimraf node_modules **/*/node_modules",
     "test": "lerna run test --scope wujie",
     "commitlint": "commitlint -E COMMIT_EDITMSG_PATH",
@@ -23,9 +23,9 @@
     "@commitlint/config-conventional": "^16.2.1",
     "@lerna-lite/cli": "^1.11.1",
     "@lerna-lite/run": "^1.11.1",
+    "cross-env": "^7.0.3",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
     "rimraf": "^3.0.2"
-  },
-  "dependencies": {}
+  }
 }
