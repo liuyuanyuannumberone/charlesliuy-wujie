@@ -5,7 +5,8 @@ class UserCard extends HTMLElement {
   }
   connectedCallback() {
     const root = document.querySelector("#app");
-    const shadow = root.attachShadow({ mode: "open" });
+    // mode模式：shadow root的内部实现是否可被 JavaScript 访问及修改
+    const shadowRoot = root.attachShadow({ mode: "open" });
     const templateElem = document.getElementById("userCardTemplate");
     const content = templateElem.content.cloneNode(true);
     content.querySelector(".image").setAttribute("src", this.getAttribute("image"));
@@ -15,7 +16,7 @@ class UserCard extends HTMLElement {
     this.button.addEventListener("click", () => {
       alert("你点击我了");
     });
-    shadow.appendChild(content);
+    shadowRoot.appendChild(content);
     console.log("自定义元素添加至页面", "mode=open", root.shadowRoot);
   }
   // 每当元素从文档中移除时调用

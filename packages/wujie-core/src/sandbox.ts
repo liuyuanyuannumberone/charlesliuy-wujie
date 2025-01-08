@@ -34,6 +34,7 @@ import { WUJIE_DATA_ATTACH_CSS_FLAG } from "./constant";
 import { plugin, ScriptObjectLoader, loadErrorHandler } from "./index";
 
 export type lifecycle = (appWindow: Window) => any;
+// 定义无界生命周期钩子
 type lifecycles = {
   beforeLoad: lifecycle;
   beforeMount: lifecycle;

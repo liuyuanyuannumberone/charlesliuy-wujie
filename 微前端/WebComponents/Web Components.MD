@@ -30,11 +30,14 @@ attributeChangedCallback()：在属性更改、添加、移除或替换时调用
 
 用于将封装的"影子"DOM树附加到元素(与主文档DOM分开呈现)并控制其关联的功能,可以保持元素的功能私有,这样它们就可以被脚本化和样式化,而不用担心与文档的其他部分发生冲突;
 
+**shadowRoot**
+
+Shadow DOM API的ShadowRoot接口是一个DOM子树的根节点,它与文档的主DOM树分开渲染;
+可以使用document.querySelector("#app").shadowRoot来检索,假设它是由Element.attachShadow()创建mode设置为open;
 ```js
-const shadow = this.attachShadow({ mode: "open" })
+const shadowRoot = this.attachShadow({ mode: "open" })
 ```
 当设置为open时，页面中的js可以通过影子宿主的shadowRoot属性访问影子DOM的内部;
-
 
 ### HTML template [HTML模板]
 

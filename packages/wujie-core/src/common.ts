@@ -1,8 +1,8 @@
 import Wujie from "./sandbox";
 import { cacheOptions } from "./index";
 export interface SandboxCache {
-  wujie?: Wujie;
-  options?: cacheOptions;
+  wujie?: Wujie; // 无界的实例
+  options?: cacheOptions; // 实例的可选配置
 }
 
 export type appAddEventListenerOptions = AddEventListenerOptions & { targetWindow?: Window };
@@ -12,10 +12,11 @@ export const idToSandboxCacheMap = window.__POWERED_BY_WUJIE__
   ? window.__WUJIE.inject.idToSandboxMap
   : new Map<String, SandboxCache>();
 
+// 获取无界实例
 export function getWujieById(id: String): Wujie | null {
   return idToSandboxCacheMap.get(id)?.wujie || null;
 }
-
+// 获取无界实例的options配置
 export function getOptionsById(id: String): cacheOptions | null {
   return idToSandboxCacheMap.get(id)?.options || null;
 }
@@ -25,13 +26,14 @@ export function addSandboxCacheWithWujie(id: string, sandbox: Wujie): void {
   if (wujieCache) idToSandboxCacheMap.set(id, { ...wujieCache, wujie: sandbox });
   else idToSandboxCacheMap.set(id, { wujie: sandbox });
 }
-
+// 删除无界实例
 export function deleteWujieById(id: string) {
   const wujieCache = idToSandboxCacheMap.get(id);
   if (wujieCache?.options) idToSandboxCacheMap.set(id, { options: wujieCache.options });
   idToSandboxCacheMap.delete(id);
 }
 
+// 添加无界实例的可选配置
 export function addSandboxCacheWithOptions(id: string, options: cacheOptions): void {
   const wujieCache = idToSandboxCacheMap.get(id);
   if (wujieCache) idToSandboxCacheMap.set(id, { ...wujieCache, options });
