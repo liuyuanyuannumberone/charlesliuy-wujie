@@ -10,24 +10,24 @@
     <iframe src="./child1.html" width="600" height="400" id="authIframe" style="border: 1px solid black"></iframe>
   </body>
   <script>
-    // 测试iframe和外部页面是否同源
-    setTimeout(() => {
-      const iframe = document.getElementById("authIframe");
-      const iframeDoc = iframe.contentDocument;
-      const iframeWindow = iframe.contentWindow;
-      iframeDoc.body.style.backgroundColor = "green";
-      console.log(iframeWindow.document.body.style.backgroundColor); // green
-      // console.log("如果外部页面和iframe 的内容是同源的", iframe, iframeDoc,contentWindow); // <iframe/> #document
-    }, 2 * 1000);
-
-    // 父应用通知子应用
-    const iframeDom = document.getElementById("authIframe");
-    iframeDom.onload = function () {
-      iframeDom.contentWindow.printChild();
-    };
-
     function printParent() {
       console.log("我是父应用");
     }
+
+    setTimeout(() => {
+      const iframe = document.getElementById("authIframe");
+      const iframeWindow = iframe.contentWindow;
+      const iframeDocument = iframe.contentDocument;
+
+      iframeWindow.add = function (a, b) {
+        return a + b;
+      };
+      // 父应用通知子应用
+      iframe.onload = function () {
+        iframeWindow.printChild();
+      };
+      iframeDocument.body.style.backgroundColor = "green";
+    }, 2 * 1000);
+
   </script>
 </html>

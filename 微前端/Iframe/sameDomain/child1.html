@@ -20,7 +20,10 @@
     function printChild() {
       console.log("我是子应用");
     }
-    // 子应用通知父应用
-    window.top.printParent();
+    setTimeout(() => {
+      console.log(window);
+      // 子应用通知父应用
+      window.top.printParent();
+    }, 5 * 1000);
   </script>
 </html>
