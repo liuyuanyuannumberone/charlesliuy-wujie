@@ -39,6 +39,8 @@ export function getPresetLoaders(loaderType: presetLoadersType, plugins: Array<p
  * 获取影响插件
  */
 type effectLoadersType = "jsExcludes" | "cssExcludes" | "jsIgnores" | "cssIgnores";
+
+// 返回对应类型的数组函数
 export function getEffectLoaders(loaderType: effectLoadersType, plugins: Array<plugin>): plugin[effectLoadersType] {
   return plugins
     .map((plugin) => plugin[loaderType])

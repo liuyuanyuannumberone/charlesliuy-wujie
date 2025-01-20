@@ -929,10 +929,11 @@ export function iframeGenerator(
   const attrsMerge = {
     style: "display: none",
     ...attrs,
-    src,
+    src, // 子应用的地址
     name: sandbox.id,
     [WUJIE_DATA_FLAG]: "",
   };
+  // 给创建的iframe元素设置属性
   setAttrsToElement(iframe, attrsMerge);
   window.document.body.appendChild(iframe);
 

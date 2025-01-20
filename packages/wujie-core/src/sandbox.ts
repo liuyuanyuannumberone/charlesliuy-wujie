@@ -514,6 +514,7 @@ export default class Wujie {
     this.iframe = iframeGenerator(this, attrs, mainHostPath, appHostPath, appRoutePath);
 
     if (this.degrade) {
+      // 降级处理
       const { proxyDocument, proxyLocation } = localGenerator(this.iframe, urlElement, mainHostPath, appHostPath);
       this.proxyDocument = proxyDocument;
       this.proxyLocation = proxyLocation;

@@ -185,6 +185,7 @@ export function setupApp(options: cacheOptions): void {
  * 运行无界app
  */
 export async function startApp(startOptions: startOptions): Promise<Function | void> {
+  // 无界实例
   const sandbox = getWujieById(startOptions.name);
   const cacheOptions = getOptionsById(startOptions.name);
   // 合并缓存配置

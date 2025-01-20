@@ -51,7 +51,7 @@ function defaultGetTemplate(tpl) {
 }
 
 /**
- * 处理css-loader
+ * 处理css-loaders,加载到的css资源内联进入html中
  */
 export async function processCssLoader(
   sandbox: Wujie,
@@ -236,6 +236,7 @@ export default function importHTML(params: {
       return {
         template: template,
         assetPublicPath,
+        // 获取html中的js
         getExternalScripts: () =>
           getExternalScripts(
             scripts
@@ -245,6 +246,7 @@ export default function importHTML(params: {
             loadError,
             fiber
           ),
+        // 获取html中的css
         getExternalStyleSheets: () =>
           getExternalStyleSheets(
             styles
