@@ -243,6 +243,9 @@ export function getSyncUrl(id: string, prefix: { [key: string]: string }): strin
   return syncUrl;
 }
 // @ts-ignore
+/**
+ * 浏览器空闲时执行,优先使用requestIdleCallback,否则使用setTimeout
+ */
 export const requestIdleCallback = window.requestIdleCallback || ((cb: Function) => setTimeout(cb, 1));
 
 export function getContainer(container: string | HTMLElement): HTMLElement {

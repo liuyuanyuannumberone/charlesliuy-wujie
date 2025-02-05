@@ -4,7 +4,7 @@
 
 ## 背景
 
-在做前端开发的时候，经常会需要通过CDN的方式引入一些第三方库
+在做前端开发的时候,经常会需要通过CDN的方式引入一些第三方库;
 
 ```js
 <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
@@ -15,7 +15,7 @@
 
 ## integrity
 
-<script/><link>元素浏览器对获取的资源进行检查,提供一个hash用来检验加载的JS文件或者CSS问卷是否完整,避免托管在CDN的资源被篡改而引入的XSS风险;
+<script/><link/>元素浏览器对获取的资源进行检查,提供一个hash用来检验加载的JS文件或者CSS文件是否完整,避免托管在CDN的资源被篡改而引入的XSS风险;
 
 
 ## crossorigin
@@ -26,7 +26,7 @@
 1. anonymous(默认值)
 
 - 不发送跨域请求的凭据（如cookies/HTTP认证信息）这意味着如果远程服务器要求认证信息或cookies它们不会被发送;
-- 如果脚本请求的资源允许跨域访问,则浏览器会加载该资源否则会出现错误;
+- 如果脚本请求的资源允许跨域访问,则浏览器会加载该资源,否则会出现错误;
 
 
 2. use-credentials
